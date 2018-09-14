@@ -1,0 +1,20 @@
+#!/bin/bash
+
+CSCOPE_DIR="$PWD/cscope"
+
+if [ ! -d "$CSCOPE_DIR" ]; then
+  mkdir "$CSCOPE_DIR"
+fi
+
+echo "Find finles"
+find "$PWD" -name '*.[ch]' \
+  -o -name '*.cpp' \
+  -o -name '*.py' \
+  -o -name '*.cc' \
+  -o -name '*.php' > "$CSCOPE_DIR/cscope.files"
+
+echo "Add file to cscope DB: $PWD/cscope.db"
+cscope -b -i "$CSCOPE_DIR/cscope.files"
+
+export CSCOPE_DB="$PWD/cscope.out"
+echo "Exported to: '$CSCOPE_DB'"
