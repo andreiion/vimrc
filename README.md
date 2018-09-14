@@ -21,5 +21,5 @@ Simple as that :)
 ## Final step.
 Copy script `gentags` to `$PATH` or to `/usr/bin/` so you can have global access.
 
-##Usefull links
+## Usefull links
 - Tutorial on [cscope](http://cscope.sourceforge.net/cscope_vim_tutorial.html)
