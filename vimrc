@@ -118,3 +118,6 @@ if has("cscope")
         " Open a quickfix window for the following queries.
         set cscopequickfix=s-,c-,d-,i-,t-,e-,g-
 endif
+
+nnoremap <F5> :cp<CR>
+nnoremap <F6> :cn<CR>
