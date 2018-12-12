@@ -45,6 +45,7 @@ map + <c-w>>
 
 nmap <Space> <PageDown>
 
+set hlsearch
 
 " Highlight with red characters over 80 on a line
 set colorcolumn=80
