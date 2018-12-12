@@ -16,6 +16,18 @@ set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
 " Personal tab to 4
 " set tabstop=8 set softtabstop=8 set shiftwidth=8
 
+" This paragraph was taken from defaults.vim
+" Allow backspacing over everything in insert mode.
+set backspace=indent,eol,start
+
+set history=200         " keep 200 lines of command line history
+set ruler               " show the cursor position all the time
+set showcmd             " display incomplete commands
+set wildmenu            " display completion matches in a status line
+
+set ttimeout            " time out for key codes
+set ttimeoutlen=100     " wait up to 100ms after Esc for special key
+
 " When expandtab is set => tab = x spaces
 set expandtab
 set autoindent
@@ -36,9 +48,6 @@ runtime ftplugin/man.vim
 set mouse=
 
 map <Tab> <C-W>w
-
-"map + <c-w>+
-"map - <c-w>-
 
 map - <c-w><
 map + <c-w>>
