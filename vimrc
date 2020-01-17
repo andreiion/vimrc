@@ -88,6 +88,7 @@ if has("cscope")
         while s:dirs != []
                 let s:path = "/" . join(s:dirs, "/")
                 if (filereadable(s:path . "/cscope.out"))
+                        set nocscopeverbose
                         execute "cs add " . s:path . "/cscope.out " . s:path . " -v"
                         break
                 endif
