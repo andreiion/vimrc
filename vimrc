@@ -1,6 +1,3 @@
-" set backupdir
-" set backupdir=~/.vim/bkup
-
 set textwidth=0
 " set encoding
 set encoding=utf8
@@ -8,13 +5,27 @@ set encoding=utf8
 " Mark tabs and spaces
 set list listchars=tab:»\ ,trail:·,extends:»,precedes:«
 
-" Work coding style 2 spaces
-set tabstop=2 softtabstop=0 expandtab shiftwidth=2 smarttab
-" For kernel set tabstop to 8
-" set tabstop=8 set softtabstop=8 set shiftwidth=8
 
-" Personal tab to 4
-" set tabstop=8 set softtabstop=8 set shiftwidth=8
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+""" Coding Style Settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+" When expandtab is set => tab = x spaces
+set expandtab
+
+" 2 Spaces Coding Style
+set tabstop=2 softtabstop=2  shiftwidth=2 smarttab
+
+" Personal weird Coding Style
+"set tabstop=4 softtabstop=0 shiftwidth=4 smarttab
+
+" Linux Kernel Coding Style
+"set tabstop=8 softtabstop=8 shiftwidth=8 smarttab
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+" End Coding Style Settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Number of context lines you would like to see above and below the cursor.
+set scrolloff=5
 
 " This paragraph was taken from defaults.vim
 " Allow backspacing over everything in insert mode.
@@ -28,8 +39,6 @@ set wildmenu            " display completion matches in a status line
 set ttimeout            " time out for key codes
 set ttimeoutlen=100     " wait up to 100ms after Esc for special key
 
-" When expandtab is set => tab = x spaces
-set expandtab
 set autoindent
 set smartindent
 set hidden
@@ -45,59 +54,84 @@ syn on se title
 runtime ftplugin/man.vim
 
 " now we can use middle click to paste over SSH
+"set mouse=nicr
 set mouse=
 
+" Change between windows with Tab key
 map <Tab> <C-W>w
 
+" Reduce and increase the size of windows in split screen mode
 map - <c-w><
 map + <c-w>>
 
-nmap <Space> <PageDown>
-
 set hlsearch
 
+set term=screen-256color
+
 " Highlight with red characters over 80 on a line
-set colorcolumn=80
+set colorcolumn=100
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 command M80 match OverLength /\%80v.\+/
 command NOM80 match
 " Automatically remove trailing whitespaces
 autocmd BufWritePre * :%s/\s\+$//e
 
-""" Tree View for files """
-"let g:netrw_banner = 0
-"let g:netrw_liststyle = 3
-"let g:netrw_browse_split = 4
-"let g:netrw_altv = 1
-"let g:netrw_winsize = 12
-"augroup ProjectDrawer
-"  autocmd!
-"  autocmd VimEnter * :Vexplore
-"augroup END
 
-"source ~/.vim/plugins/cscope_maps.vim
+
+"""""""""""""""""""""""""""""""
+""" Vim Airlines Theme settings
+"""""""""""""""""""""""""""""""
+let g:airline_theme='dracula'
+
+
+""""""""""""""""""""""""""""""
+"""End Vim Airlines Theme"""""
+""""""""""""""""""""""""""""""
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""
+"""Syntastic recommended default values""""""
+"""""""""""""""""""""""""""""""""""""""""""""
+"set statusline+=%F
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 1
+"let g:syntastic_python_checkers = ['pylint']
+""""""""""""""""""""""""""""""""""""""""""""""
+"""End Syntastic recommended default values"""
+""""""""""""""""""""""""""""""""""""""""""""""
+
+
 
 if has("cscope")
         " Look for a 'cscope.out' file starting from the current directory,
         " going up to the root directory.
 
+        " use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
+        set cscopetag
 
-"        if filereadable("cscope.out")
-"            cs add cscope.out
-        let s:dirs = split(getcwd(), "/")
-        while s:dirs != []
-                let s:path = "/" . join(s:dirs, "/")
-                if (filereadable(s:path . "/cscope.out"))
-                        set nocscopeverbose
-                        execute "cs add " . s:path . "/cscope.out " . s:path . " -v"
-                        break
-                endif
-                let s:dirs = s:dirs[:-2]
-        endwhile
+        set nocscopeverbose
+        "set csverb " Make cs verbose
 
-        set csto=0	" Use cscope first, then ctags
-        set cst		" Only search cscope
-        set csverb	" Make cs verbose
+        " check cscope for definition of a symbol before checking ctags: set to 1
+        " if you want the reverse search order.
+        set csto=0
+
+        set cst                 " Only search cscope
+
+        " add any cscope database in current directory
+        if filereadable("cscope.out")
+                cs add cscope.out
+        " else add the database pointed to by environment variable
+        elseif $CSCOPE_DB != ""
+                cs add $CSCOPE_DB
+        endif
 
 "        's' symbol: găsește toate referințele simbolului marcat de cursor
 "        'g' global: găsește definițiile globale ale simbolului marcat de cursor
@@ -125,10 +159,14 @@ if has("cscope")
         nmap <C-@>i :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
         nmap <C-@>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
 
-
         " Open a quickfix window for the following queries.
         set cscopequickfix=s-,c-,d-,i-,t-,e-,g-
 endif
 
-nnoremap <F5> :cp<CR>
-nnoremap <F6> :cn<CR>
+" Mapping for Linux
+"nnoremap <F5> :cp<CR>
+"nnoremap <F6> :cn<CR>
+
+" Mapping for OS X
+nnoremap ∆ :cp<CR>
+nnoremap ˚ :cn<CR>
