@@ -30,6 +30,8 @@ set mouse=                    " now we can use middle click to paste over SSH
 set hlsearch                  " highlight all search matches
 set term=screen-256color
 
+set path+=shared/**           " add all subdir from shared to path. Relative to current pwd
+
 syntax on
 filetype plugin indent on
 set cinoptions=:0,l1,(0
