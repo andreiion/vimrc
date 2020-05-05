@@ -26,7 +26,7 @@ set splitright
 set splitbelow
 set number                    " display line numbers
 
-set mouse=                    " now we can use middle click to paste over SSH
+set mouse=a                    " now we can use middle click to paste over SSH
 set hlsearch                  " highlight all search matches
 set term=screen-256color
 
@@ -40,14 +40,26 @@ syn on se title
 " load manual pages
 runtime ftplugin/man.vim
 
-set colorcolumn=100
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-command M80 match OverLength /\%80v.\+/
-command NOM80 match
+"highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+"command M80 match OverLength /\%80v.\+/
+"command NOM80 match
 
 " Automatically remove trailing whitespaces
 autocmd BufWritePre * :%s/\s\+$//e
 
+
+"""""""""""""""""""""""""""""""""""""""""""""
+""" Background Color Scheme and Higlight """"
+"""""""""""""""""""""""""""""""""""""""""""""
+"colorscheme desert
+"set cursorline
+"highlight CursorLine term=bold cterm=bold
+
+set colorcolumn=120
+highlight ColorColumn  ctermbg=252
+"""""""""""""""""""""""""""""""""""""""""""""
+""" End Background Color Scheme and Higlight """"
+"""""""""""""""""""""""""""""""""""""""""""""
 
 
 """"""""""""""""""""""""""""""
@@ -85,8 +97,11 @@ nnoremap <C-k> :cp<CR>
 nnoremap <C-j> :cn<CR>
 
 " Mapping for OS X
-nnoremap ∆ :cn<CR>
-nnoremap ˚ :cp<CR>
+"nnoremap ∆ :cn<CR>
+"nnoremap ˚ :cp<CR>
+
+" Set <Leader>
+let g:mapleader = ' '
 
 " Keep the screen centered or not (toggle action)
 nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
@@ -142,6 +157,13 @@ let g:syntastic_check_on_wq = 1
 "map <C-h> :ClangFormat <CR>
 """""""""""""""""""""""""""""
 """ End Clang integration """
+"""""""""""""""""""""""""
+""" NERD Tree integration """
+"""""""""""""""""""""""""
+nnoremap <Leader>n :NERDTree <CR>
+nnoremap <Leader>nc :NERDTreeClose <CR>
+"""""""""""""""""""""""""""""
+""" end NERD Tree integration """
 """""""""""""""""""""""""""""
 
 
