@@ -169,10 +169,10 @@ nnoremap <Leader>nc :NERDTreeClose <CR>
 
 
 " [Windows only] Use this to make cursor block pretty in the amazing WCL
-" let &t_ti ="\e[1 q"
-" let &t_SI ="\e[5 q"
-" let &t_EI ="\e[1 q"
-" let &t_te ="\e[0 q"
+" let &t_ti.="\e[1 q"
+" let &t_SI.="\e[5 q"
+" let &t_EI.="\e[1 q"
+" let &t_te.="\e[0 q"
 
 
 
