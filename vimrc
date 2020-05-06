@@ -41,10 +41,6 @@ syn on se title
 " load manual pages
 runtime ftplugin/man.vim
 
-"highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-"command M80 match OverLength /\%80v.\+/
-"command NOM80 match
-
 " Automatically remove trailing whitespaces
 autocmd BufWritePre * :%s/\s\+$//e
 
@@ -103,6 +99,10 @@ set tabstop=4 softtabstop=0 shiftwidth=4 smarttab
 """"""""""""""""""""""""""""""""""
 """ Mappings for a better life """
 """"""""""""""""""""""""""""""""""
+" Write buffer to file
+nnoremap <silent> <Leader>w :<C-U>write<CR>
+
+
 " Change between windows with Tab key
 map <Tab> <C-W>w
 
@@ -110,13 +110,9 @@ map <Tab> <C-W>w
 map - <c-w><
 map + <c-w>>
 
-" Mapping for Linux
+" Mapping for easy navigate in quickfix window (opened by cscope)
 nnoremap <C-k> :cp<CR>
 nnoremap <C-j> :cn<CR>
-
-" Mapping for OS X
-"nnoremap ∆ :cn<CR>
-"nnoremap ˚ :cp<CR>
 
 " Set <Leader>
 let g:mapleader = ' '
