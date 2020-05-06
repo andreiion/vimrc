@@ -198,11 +198,15 @@ nnoremap <Leader>nc :NERDTreeClose <CR>
 " let &t_te.="\e[0 q"
 
 
-
 """"""""""""""""""""""
 """ Cscope Mapping """
 """"""""""""""""""""""
 if has("cscope")
+
+    " Map cscope refresh
+    nnoremap <Leader>c :!gentags <CR>
+                       \:cs reset <CR>
+
     set cscopetag             " use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
     set nocscopeverbose
     set csto=0                " use cscope first, then ctags
