@@ -25,6 +25,7 @@ set hidden
 set splitright
 set splitbelow
 set number                    " display line numbers
+set relativenumber            " display relative line numbers
 
 set mouse=a                    " now we can use middle click to paste over SSH
 set hlsearch                  " highlight all search matches
@@ -46,6 +47,23 @@ runtime ftplugin/man.vim
 
 " Automatically remove trailing whitespaces
 autocmd BufWritePre * :%s/\s\+$//e
+
+
+
+""""""""""""""""""""""""""""
+""" Vimrc quick commands """
+""""""""""""""""""""""""""""
+
+" Open vimrc
+nnoremap <silent> <Leader>ev :<C-U>tab drop $MYVIMRC<CR>
+
+" Reload vimrc
+command! ReloadVimrc :source $MYVIMRC
+
+""""""""""""""""""""""""""""
+""" Vimrc quick commands """
+""""""""""""""""""""""""""""
+
 
 
 """""""""""""""""""""""""""""""""""""""""""""
@@ -102,6 +120,11 @@ nnoremap <C-j> :cn<CR>
 
 " Set <Leader>
 let g:mapleader = ' '
+
+" Go to previous/next tab
+nnoremap <Leader>j gT<CR>
+nnoremap <Leader>k gt<CR>
+
 
 " Keep the screen centered or not (toggle action)
 nnoremap <Leader>zz :let &scrolloff=999-&scrolloff<CR>
